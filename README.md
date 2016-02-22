@@ -1,7 +1,7 @@
-# Simple CORS
-Dead simple CORS handler for Go.
+# Dead Simple CORS
+CORS handling made as easy as it gets.
 
-Works with http.Handler compatible packages.
+Use this package when you want to allow all cross origin requests. It works with every http.Handler compatible router
 
 ## Example
 ```go
@@ -24,3 +24,9 @@ func main() {
 	http.ListenAndServe(":8000", cors.CORS()(mux))
 }
 ```
+
+### How?
+By setting following headers:
+- Access-Control-Allow-Origin  : origin of request
+- Access-Control-Allow-Methods : POST, GET, OPTIONS, PUT, DELETE, HEAD, PATCH
+- Access-Control-Allow-Headers : Accept, Accept-Encoding, Authorization, Content-Length, Content-Type, X-CSRF-Token
