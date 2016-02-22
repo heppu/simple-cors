@@ -1,5 +1,6 @@
 # Simple CORS
 Dead simple CORS handler for Go.
+
 Works with http.Handler compatible packages.
 
 ## Example
