@@ -7,7 +7,7 @@ const (
 	allow_methods string = "Access-Control-Allow-Methods"
 	allow_headers string = "Access-Control-Allow-Headers"
 	origin        string = "Origin"
-	methods       string = "POST, GET, OPTIONS, PUT, DELETE"
+	methods       string = "POST, GET, OPTIONS, PUT, DELETE, HEAD, PATCH"
 	headers       string = "Accept, Accept-Encoding, Authorization, Content-Length, Content-Type, X-CSRF-Token"
 )
 
