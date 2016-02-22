@@ -27,6 +27,8 @@ func main() {
 
 ### How?
 By setting following headers:
-- Access-Control-Allow-Origin  : origin of request
-- Access-Control-Allow-Methods : POST, GET, OPTIONS, PUT, DELETE, HEAD, PATCH
-- Access-Control-Allow-Headers : Accept, Accept-Encoding, Authorization, Content-Length, Content-Type, X-CSRF-Token
+```
+"Access-Control-Allow-Origin	: origin of request
+"Access-Control-Allow-Methods	: "POST, GET, OPTIONS, PUT, DELETE, HEAD, PATCH"
+"Access-Control-Allow-Headers	: "Accept, Accept-Encoding, Authorization, Content-Length, Content-Type, X-CSRF-Token"
+```
