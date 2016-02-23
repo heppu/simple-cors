@@ -24,8 +24,10 @@ func CORS() func(http.Handler) http.Handler {
 func (c *corsHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if o := r.Header.Get(origin); o != "" {
 		w.Header().Set(allow_origin, o)
-		w.Header().Set(allow_methods, methods)
-		w.Header().Set(allow_headers, headers)
+	} else {
+		w.Header().Set(allow_origin, "*")
 	}
+	w.Header().Set(allow_headers, headers)
+	w.Header().Set(allow_methods, methods)
 	c.h.ServeHTTP(w, r)
 }
