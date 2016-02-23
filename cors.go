@@ -3,6 +3,7 @@ package cors
 import "net/http"
 
 const (
+	options       string = "OPTIONS"
 	allow_origin  string = "Access-Control-Allow-Origin"
 	allow_methods string = "Access-Control-Allow-Methods"
 	allow_headers string = "Access-Control-Allow-Headers"
@@ -27,7 +28,15 @@ func (c *corsHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	} else {
 		w.Header().Set(allow_origin, "*")
 	}
+
 	w.Header().Set(allow_headers, headers)
 	w.Header().Set(allow_methods, methods)
+
+	if r.Method == options {
+		w.WriteHeader(http.StatusOK)
+		w.Write(nil)
+		return
+	}
+
 	c.h.ServeHTTP(w, r)
 }
