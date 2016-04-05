@@ -17,36 +17,29 @@ const (
 	headers string = "Accept, Accept-Encoding, Authorization, Content-Length, Content-Type, X-CSRF-Token"
 )
 
-type corsHandler struct {
-	h http.Handler
-}
+// Handler will allow cross-origin HTTP requests
+func CORS(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// Set allow origin to match origin of our request or fall back to *
+		if o := r.Header.Get(origin); o != "" {
+			w.Header().Set(allow_origin, o)
+		} else {
+			w.Header().Set(allow_origin, "*")
+		}
 
-func CORS() func(http.Handler) http.Handler {
-	return func(h http.Handler) http.Handler {
-		return &corsHandler{h}
-	}
-}
+		// Set other headers
+		w.Header().Set(allow_headers, headers)
+		w.Header().Set(allow_methods, methods)
+		w.Header().Set(allow_credentials, credentials)
+		w.Header().Set(expose_headers, headers)
 
-func (c *corsHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	// Set allow origin to match origin of our request or fall back to *
-	if o := r.Header.Get(origin); o != "" {
-		w.Header().Set(allow_origin, o)
-	} else {
-		w.Header().Set(allow_origin, "*")
-	}
+		// If this was preflight options request let's write empty ok response and return
+		if r.Method == options {
+			w.WriteHeader(http.StatusOK)
+			w.Write(nil)
+			return
+		}
 
-	// Set other headers
-	w.Header().Set(allow_headers, headers)
-	w.Header().Set(allow_methods, methods)
-	w.Header().Set(allow_credentials, credentials)
-	w.Header().Set(expose_headers, headers)
-
-	// If this was preflight options request let's write empty ok response and return
-	if r.Method == options {
-		w.WriteHeader(http.StatusOK)
-		w.Write(nil)
-		return
-	}
-
-	c.h.ServeHTTP(w, r)
+		next.ServeHTTP(w, r)
+	})
 }
