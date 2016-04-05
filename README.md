@@ -1,7 +1,7 @@
 # Dead Simple CORS
 CORS handling made as easy as it gets.
 
-You can use this package when you want to allow all cross origin requests. It works with every http.Handler compatible router. 
+You can use this package when you want to allow all cross origin requests. It works with every http.Handler compatible router.
 
 ## Example
 ```go
@@ -25,7 +25,7 @@ func main() {
 }
 ```
 
-### How?
+## How?
 By setting following headers:
 ```
 "Access-Control-Allow-Origin"	   : origin of request or * as a fallback
@@ -35,5 +35,5 @@ By setting following headers:
 "Access-Control-Allow-Credentials" : true
 ```
 
-### Licence
+## Licence
 MIT licensed. See the LICENSE file for details.
