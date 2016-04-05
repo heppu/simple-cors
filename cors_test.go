@@ -31,7 +31,7 @@ func TestCors(t *testing.T) {
 		}
 	})
 
-	CORS()(h).ServeHTTP(rr, req)
+	CORS(h).ServeHTTP(rr, req)
 	if status := rr.Code; status != http.StatusOK {
 		t.Fatal(http.StatusFound)
 	}
