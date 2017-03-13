@@ -1,7 +1,7 @@
 # Dead Simple CORS
 CORS handling made as easy as it gets.
 
-You can use this package when you want to allow all cross origin requests. It works with every http.Handler compatible router. Since the packege is basically just one function I suggest that you just copy the code instead of importing it.
+You can use this package when you want to allow all cross origin requests. It works with every http.Handler compatible router. Since the package is just one function I suggest that you just copy the code instead of importing it.
 
 ## Example
 ```go
